@@ -9,14 +9,7 @@ import type { GithubResponse } from './requestGithubAuthentication';
 import { AUTH_WITH_GITHUB_MUTATION } from './authenticateWithGithub';
 import type { UserAuthenticationResponse } from './authenticateWithGithub';
 
-type User = {
-  id: string,
-  token: string,
-  name?: string,
-  email?: string,
-  githubUsername?: string,
-  avatarUrl?: string
-};
+import type { User } from '../../api/loggedInUser'
 
 class SignUpContainer extends Component<
   { authWithGithubMutation(obj: Object): Promise<UserAuthenticationResponse> },
