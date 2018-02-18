@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { graphql } from 'react-apollo';
 
-import { LOGGED_IN_USER } from './api/loggedInUser';
+import { LOGGED_IN_USER_QUERY } from './api/loggedInUser';
 
 import Header from './components/Header';
 import Questions from './components/Questions';
@@ -33,6 +33,6 @@ class AskMyTalkContainer extends Component {
   }
 }
 
-export default graphql(LOGGED_IN_USER, { name: 'loggedInUserQuery' })(
+export default graphql(LOGGED_IN_USER_QUERY, { name: 'loggedInUserQuery' })(
   AskMyTalkContainer
 );

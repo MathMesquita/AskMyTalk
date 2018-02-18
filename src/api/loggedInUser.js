@@ -11,7 +11,7 @@ type User = {
 };
 export type { User };
 
-export const LOGGED_IN_USER = gql`
+export const LOGGED_IN_USER_QUERY = gql`
   {
     loggedInUser {
       id
