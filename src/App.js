@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo';
 import { LOGGED_IN_USER_QUERY } from './api/loggedInUser';
 
 import Header from './components/Header';
-import Questions from './components/Questions';
+import Questions from './components/Questions/QuestionsContainer';
 import SignUp from './components/SignUp/SignUpContainer';
 import NewQuestion from './components/NewQuestion';
 
@@ -13,11 +13,13 @@ const AskMyTalk = ({ user, isLoading }) => {
   return (
     <main className='askMyTalk'>
       <Header />
-      <div className='questionsAndNewQuestion__wrapper'>
-        {!isLoading && !user && <SignUp />}
-        <Questions />
-        {!isLoading && user && <NewQuestion />}
-      </div>
+      {!isLoading && (
+        <div className='questionsAndNewQuestion__wrapper'>
+          {!user && <SignUp />}
+          <Questions user={user} />
+          {user && <NewQuestion />}
+        </div>
+      )}
     </main>
   );
 };
