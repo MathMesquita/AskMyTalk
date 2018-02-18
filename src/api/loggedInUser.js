@@ -20,3 +20,14 @@ export const LOGGED_IN_USER_QUERY = gql`
     }
   }
 `;
+
+export function updateLoggedInQueryAfterUserSignUp(store: any, user: User) {
+  store.writeQuery({
+    query: LOGGED_IN_USER_QUERY,
+    data: {
+      loggedInUser: {
+        ...user
+      }
+    }
+  });
+}

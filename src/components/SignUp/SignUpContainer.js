@@ -9,7 +9,8 @@ import type { GithubResponse } from './requestGithubAuthentication';
 import { AUTH_WITH_GITHUB_MUTATION } from './authenticateWithGithub';
 import type { UserAuthenticationResponse } from './authenticateWithGithub';
 
-import type { User } from '../../api/loggedInUser'
+import { updateLoggedInQueryAfterUserSignUp } from '../../api/loggedInUser';
+import type { User } from '../../api/loggedInUser';
 
 class SignUpContainer extends Component<
   { authWithGithubMutation(obj: Object): Promise<UserAuthenticationResponse> },
@@ -32,18 +33,17 @@ class SignUpContainer extends Component<
         .authWithGithubMutation({
           variables: {
             githubCode: githubResponse.code
+          },
+          update: (store, { data: { authenticateUser } }) => {
+            updateLoggedInQueryAfterUserSignUp(store, authenticateUser);
           }
         })
         .then((response) => response.data.authenticateUser);
 
       localStorage.setItem('graphcoolToken', user.token);
-
-      console.log(user);
-
-      this._stopLoading();
     } catch (error) {
       this._stopLoading();
-      console.log('falhou', error);
+      console.error(error);
     }
   };
 
