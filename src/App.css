@@ -97,7 +97,8 @@ body {
   color: #161616;
   line-height: 2rem;
   padding-bottom: 100%;
-  text-shadow: -1px -1px 0 #dd4e00, 1px -1px 0 #dd4e00, -1px 1px 0 #dd4e00, 1px 1px 0 #dd4e00;
+  text-shadow: -1px -1px 0 #dd4e00, 1px -1px 0 #dd4e00, -1px 1px 0 #dd4e00,
+    1px 1px 0 #dd4e00;
   cursor: pointer;
 }
 
@@ -114,13 +115,15 @@ body {
 
 .question-votes.-downvoted > .vote-downvoteAct {
   color: #f72100;
-  text-shadow: -1px -1px 0 #f72100, 1px -1px 0 #f72100, -1px 1px 0 #f72100, 1px 1px 0 #f72100;
+  text-shadow: -1px -1px 0 #f72100, 1px -1px 0 #f72100, -1px 1px 0 #f72100,
+    1px 1px 0 #f72100;
   cursor: default;
   cursor: default;
 }
 .question-votes.-upvoted > .vote-upvoteAct {
   color: #38925e;
-  text-shadow: -1px -1px 0 #38925e, 1px -1px 0 #38925e, -1px 1px 0 #38925e, 1px 1px 0 #38925e;
+  text-shadow: -1px -1px 0 #38925e, 1px -1px 0 #38925e, -1px 1px 0 #38925e,
+    1px 1px 0 #38925e;
   cursor: default;
 }
 
@@ -231,4 +234,19 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.signUp {
+  box-shadow: -2px 4px 10px #0f0f0f, 0px 3px 9px -5px #dd4e00;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #161616;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.signUp-image {
+  margin-bottom: 1rem;
 }

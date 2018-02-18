@@ -3,8 +3,14 @@ type User @model {
   createdAt: DateTime! # read-only (managed by Graphcool)
   updatedAt: DateTime! # read-only (managed by Graphcool)
   githubUserId: String @isUnique
+  name: String!
+  avatarUrl: String
+  githubUsername: String! @isUnique
+  email: String! @isUnique
   questions: [Question!]! @relation(name: "UserQuestions")
-  upVotes: [Question!]! @rename(oldName: "votes") @relation(name: "QuestionsUpVoted", oldName: "QuestionsVoted")
+  upVotes: [Question!]!
+    @rename(oldName: "votes")
+    @relation(name: "QuestionsUpVoted", oldName: "QuestionsVoted")
   downVotes: [Question!]! @relation(name: "QuestionsDownVoted")
 }
 
@@ -12,7 +18,9 @@ type Question @model {
   id: ID! @isUnique
   text: String!
   owner: User! @relation(name: "UserQuestions")
-  upVotes: [User!]! @rename(oldName: "votes") @relation(name: "QuestionsUpVoted", oldName: "QuestionsVoted")
+  upVotes: [User!]!
+    @rename(oldName: "votes")
+    @relation(name: "QuestionsUpVoted", oldName: "QuestionsVoted")
   downVotes: [User!]! @relation(name: "QuestionsDownVoted")
   talk: Talk! @relation(name: "TalkQuestions")
 }
