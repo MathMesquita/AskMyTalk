@@ -1,8 +1,8 @@
 [ignore]
+./graphcool/.*
 
 [include]
 ./src/.*
-
 
 [libs]
 
