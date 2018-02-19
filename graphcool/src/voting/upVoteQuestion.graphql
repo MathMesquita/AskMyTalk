@@ -1,0 +1,3 @@
+extend type Mutation {
+  upVoteQuestion(questionId: String!, userId: String!): Question
+}
