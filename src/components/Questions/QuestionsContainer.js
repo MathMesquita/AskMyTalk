@@ -2,28 +2,16 @@
 import React, { Component } from 'react';
 import { withApollo } from 'react-apollo';
 
-import Questions from './Questions';
-import { QUESTIONS_QUERY } from './queryAllQuestions';
+import type { User } from '../../api/loggedInUser';
+import type { Question } from './Question.type';
 
-type Question = {
-  id: string,
-  text: string,
-  owner: {
-    name: string,
-    githubUsername: string
-  },
-  upVotes: Array<string>,
-  downVotes: Array<string>,
-  _upVotesMeta: {
-    count: number
-  },
-  _downVotesMeta: {
-    count: number
-  }
-};
+import Questions from './Questions';
+import { mountQuestionsQueryRequest } from './queryAllQuestions';
+
+import orderQuestionsByVotes from './orderQuestionsByVotes';
 
 class QuestionsContainer extends Component<
-  {},
+  { client: Object, user: User },
   { isLoading: boolean, questions: Array<Question> }
 > {
   state = {
@@ -31,20 +19,19 @@ class QuestionsContainer extends Component<
     questions: []
   };
   async componentWillMount() {
+    const loggedInUser: string = `${this.props.user && this.props.user.id}`;
+
     const questions: Array<Question> = await this.props.client
-      .query({
-        query: QUESTIONS_QUERY,
-        variables: {
-          loggedInUser: `${this.props.user && this.props.user.id}`
-        }
-      })
-      .then((r) => r.data.allQuestions);
+      .query(mountQuestionsQueryRequest(loggedInUser))
+      .then((response) => response.data.allQuestions);
 
     this.setState({ isLoading: false, questions });
   }
 
   render() {
-    return <Questions questions={this.state.questions} />;
+    const orderedQuestions = orderQuestionsByVotes(this.state.questions);
+
+    return <Questions questions={orderedQuestions} />;
   }
 }
 

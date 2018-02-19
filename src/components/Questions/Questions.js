@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { calculateQuestionVotes } from './orderQuestionsByVotes';
+
 const Questions = ({ questions }) => {
   return (
     <section className='questions'>
@@ -10,7 +12,7 @@ const Questions = ({ questions }) => {
           <div className='question-votes'>
             <button className='vote-upvoteAct'>+</button>
             <span className='vote-quantity'>
-              {question._upVotesMeta.count + question._downVotesMeta.count}
+              {calculateQuestionVotes(question)}
             </span>
             <button className='vote-downvoteAct'>-</button>
           </div>

@@ -25,3 +25,12 @@ export const QUESTIONS_QUERY = gql`
     }
   }
 `;
+
+export function mountQuestionsQueryRequest(loggedInUser: string): Object {
+  return {
+    query: QUESTIONS_QUERY,
+    variables: {
+      loggedInUser
+    }
+  };
+}
