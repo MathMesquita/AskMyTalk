@@ -7,23 +7,14 @@ interface EventData {
   userId: string;
 }
 
-// read Github credentials from environment variables
-const client_id = process.env.GITHUB_CLIENT_ID;
-const client_secret = process.env.GITHUB_CLIENT_SECRET;
-
 export default async (event: FunctionEvent<EventData>) => {
   console.log(event);
-
-  if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
-    console.log('Please provide a valid client id and secret!');
-    return { error: 'Github Authentication not configured correctly.' };
-  }
 
   try {
     const graphcool = fromEvent(event);
     const api = graphcool.api('simple/v1');
 
-    const { githubCode } = event.data;
+    const { questionId, userId } = event.data;
 
     // get github token
     const githubToken: string = await getGithubToken(githubCode);

@@ -18,6 +18,7 @@ class QuestionsContainer extends Component<
     isLoading: true,
     questions: []
   };
+
   async componentWillMount() {
     const loggedInUser: string = `${this.props.user && this.props.user.id}`;
 
@@ -33,6 +34,10 @@ class QuestionsContainer extends Component<
 
     return <Questions questions={orderedQuestions} />;
   }
+
+  upVoteHandler = () => {};
+
+  downVoteHandler = () => {};
 }
 
 export default withApollo(QuestionsContainer);
